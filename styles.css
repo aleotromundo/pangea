@@ -70,7 +70,7 @@ body{
     radial-gradient(1.0px 1.0px at 71px 116px, rgba(255,255,255,0.46), transparent 100%);
   background-size:220px 220px;
   opacity:0.55;
-  animation: twinkle 7s ease-in-out infinite;
+  animation: twinkle 7s ease-in-out infinite, drift-far 260s linear infinite;
 }
 .galaxy-bg .stars-near{
   background-image:
@@ -85,11 +85,19 @@ body{
     radial-gradient(1.7px 1.7px at 287px 275px, rgba(255,255,255,0.78), transparent 100%);
   background-size:340px 340px;
   opacity:0.85;
-  animation: twinkle 5s ease-in-out infinite reverse;
+  animation: twinkle 5s ease-in-out infinite reverse, drift-near 190s linear infinite reverse;
 }
 @keyframes nebula-drift{
   0%{ transform:translate3d(0,0,0) scale(1); }
   100%{ transform:translate3d(-2.5%,3%,0) scale(1.06); }
+}
+@keyframes drift-far{
+  from{ background-position: 0 0; }
+  to{ background-position: 220px 110px; }
+}
+@keyframes drift-near{
+  from{ background-position: 0 0; }
+  to{ background-position: -340px 170px; }
 }
 @keyframes twinkle{
   0%,100%{ opacity:0.4; }
@@ -131,6 +139,47 @@ nav a:hover{color:var(--text);}
 .mobile-panel a{font-family:'Fraunces', serif; font-size:1.4rem; color:var(--text);}
 .mobile-panel .nav-cta{align-self:flex-start; margin-top:10px;}
 
+/* ---------- CURSOR: DUO QUE SIGUE AL PUNTERO ---------- */
+.cursor-follow{
+  position:fixed; inset:0; z-index:70;
+  pointer-events:none; opacity:0;
+  transition:opacity .5s ease;
+}
+.cursor-follow.active{opacity:1;}
+.cursor-dot{
+  position:absolute; top:0; left:0;
+  border-radius:50%;
+  will-change:transform;
+}
+.dot-lead{
+  width:7px; height:7px;
+  background:var(--gold);
+  box-shadow:0 0 10px rgba(201,162,39,0.65);
+}
+.dot-trail{
+  width:24px; height:24px;
+  border:1px solid rgba(79,199,168,0.5);
+  background:rgba(79,199,168,0.04);
+}
+@media (pointer: coarse){ .cursor-follow{display:none;} }
+@media (prefers-reduced-motion: reduce){ .cursor-follow{display:none;} }
+
+/* ---------- SCROLL REVEAL: TEXTOS E IMAGENES DESDE LA IZQUIERDA ---------- */
+@keyframes reveal-in{
+  from{ opacity:0; transform:translateX(-34px); }
+  to{ opacity:1; transform:translateX(0); }
+}
+.reveal{
+  opacity:0;
+  transform:translateX(-34px);
+}
+.reveal.is-visible{
+  animation: reveal-in .5s cubic-bezier(0.22, 1.4, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1; transform:none; animation:none; }
+}
+
 /* ---------- WHATSAPP FLOTANTE ---------- */
 .wa-float{
   position:fixed; right:22px; bottom:22px; z-index:60;
@@ -164,7 +213,7 @@ nav a:hover{color:var(--text);}
 /* ---------- HERO ---------- */
 .hero{position:relative; padding:120px 0 100px; text-align:center; overflow:hidden;}
 .orbits{position:absolute; top:50%; left:50%; width:900px; height:900px; transform:translate(-50%,-56%); z-index:0; opacity:0.55; animation:spin 140s linear infinite;}
-.orbits circle{fill:none; stroke:var(--line); stroke-width:1;}
+.orbits circle, .orbits path{fill:none; stroke:var(--line); stroke-width:1; stroke-linejoin:round;}
 .orbits .ring2{stroke:rgba(201,162,39,0.25); stroke-dasharray:2 10;}
 .orbits .ring3{stroke:rgba(79,199,168,0.2); stroke-dasharray:1 6;}
 @keyframes spin{ to{ transform:translate(-50%,-56%) rotate(360deg);} }
