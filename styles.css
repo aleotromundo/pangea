@@ -266,14 +266,15 @@ h1 em{font-style:italic; font-weight:400; color:var(--gold);}
   position:absolute;
   top:0; left:0; width:100%; aspect-ratio:1/1;
   border-radius:50%;
-  background:radial-gradient(circle, rgba(241,238,228,0.14), rgba(241,238,228,0.05) 55%, transparent 72%);
+  border:1.5px solid rgba(241,238,228,0.55);
+  box-shadow:0 0 26px rgba(241,238,228,0.22), inset 0 0 26px rgba(241,238,228,0.08);
   opacity:0;
-  transform:scale(0.82);
-  transition:transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease;
+  transform:scale(0.88);
+  transition:transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s ease;
   pointer-events:none;
   z-index:0;
 }
-.world-card:hover::before{opacity:1; transform:scale(1.14);}
+.world-card:hover::before{opacity:1; transform:scale(1.16);}
 
 .portal{
   width:100%; aspect-ratio:1/1; border-radius:50%; position:relative;
