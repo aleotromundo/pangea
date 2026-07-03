@@ -18,7 +18,10 @@
 html{scroll-behavior:smooth;}
 
 body{
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,162,39,0.10), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(79,199,168,0.08), transparent),
+    var(--bg);
   color:var(--text);
   font-family:'Inter', sans-serif;
   line-height:1.5;
@@ -27,78 +30,6 @@ body{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
-
-/* ---------- FONDO: VIA LACTEA / AURORA ---------- */
-.galaxy-bg{
-  position:fixed; inset:0; z-index:-1;
-  overflow:hidden; pointer-events:none;
-}
-.galaxy-bg .nebula{
-  position:absolute; inset:-12%;
-  background:
-    radial-gradient(ellipse 60% 40% at 12% 18%, rgba(79,199,168,0.26), transparent 60%),
-    radial-gradient(ellipse 55% 38% at 88% 12%, rgba(144,146,224,0.24), transparent 60%),
-    radial-gradient(ellipse 50% 42% at 78% 76%, rgba(123,211,154,0.20), transparent 60%),
-    radial-gradient(ellipse 45% 32% at 18% 84%, rgba(201,162,39,0.16), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 50% 45%, rgba(79,199,168,0.06), transparent 70%),
-    linear-gradient(200deg, #070818 0%, #11142A 40%, #171b3d 75%, #0d0f22 100%);
-  filter: blur(42px) saturate(1.15);
-  animation: nebula-drift 70s ease-in-out infinite alternate;
-}
-.galaxy-bg .stars-far,
-.galaxy-bg .stars-near{
-  position:absolute; inset:0;
-  background-repeat:repeat;
-}
-.galaxy-bg .stars-far{
-  background-image:
-    radial-gradient(0.6px 0.6px at 163px 28px, rgba(255,255,255,0.42), transparent 100%),
-    radial-gradient(1.1px 1.1px at 57px 35px, rgba(255,255,255,0.6), transparent 100%),
-    radial-gradient(1.0px 1.0px at 139px 22px, rgba(255,255,255,0.31), transparent 100%),
-    radial-gradient(0.8px 0.8px at 23px 55px, rgba(255,255,255,0.57), transparent 100%),
-    radial-gradient(1.1px 1.1px at 143px 50px, rgba(255,255,255,0.62), transparent 100%),
-    radial-gradient(0.9px 0.9px at 107px 56px, rgba(255,255,255,0.43), transparent 100%),
-    radial-gradient(1.2px 1.2px at 1px 194px, rgba(255,255,255,0.61), transparent 100%),
-    radial-gradient(0.7px 0.7px at 87px 71px, rgba(255,255,255,0.73), transparent 100%),
-    radial-gradient(0.7px 0.7px at 86px 26px, rgba(255,255,255,0.34), transparent 100%),
-    radial-gradient(1.0px 1.0px at 216px 88px, rgba(255,255,255,0.66), transparent 100%),
-    radial-gradient(1.0px 1.0px at 186px 117px, rgba(255,255,255,0.74), transparent 100%),
-    radial-gradient(1.0px 1.0px at 96px 20px, rgba(255,255,255,0.67), transparent 100%),
-    radial-gradient(0.9px 0.9px at 158px 220px, rgba(255,255,255,0.39), transparent 100%),
-    radial-gradient(1.1px 1.1px at 17px 11px, rgba(255,255,255,0.65), transparent 100%),
-    radial-gradient(0.8px 0.8px at 20px 218px, rgba(255,255,255,0.35), transparent 100%),
-    radial-gradient(1.0px 1.0px at 71px 116px, rgba(255,255,255,0.46), transparent 100%);
-  background-size:220px 220px;
-  opacity:0.55;
-  animation: twinkle 7s ease-in-out infinite;
-}
-.galaxy-bg .stars-near{
-  background-image:
-    radial-gradient(1.7px 1.7px at 189px 181px, rgba(255,255,255,0.66), transparent 100%),
-    radial-gradient(2.1px 2.1px at 331px 36px, rgba(255,255,255,0.62), transparent 100%),
-    radial-gradient(2.0px 2.0px at 125px 83px, rgba(255,255,255,0.66), transparent 100%),
-    radial-gradient(1.7px 1.7px at 327px 285px, rgba(201,162,39,0.68), transparent 100%),
-    radial-gradient(2.4px 2.4px at 28px 117px, rgba(79,199,168,0.87), transparent 100%),
-    radial-gradient(1.5px 1.5px at 205px 137px, rgba(144,146,224,0.92), transparent 100%),
-    radial-gradient(1.7px 1.7px at 290px 161px, rgba(123,211,154,0.75), transparent 100%),
-    radial-gradient(1.6px 1.6px at 329px 234px, rgba(255,255,255,0.61), transparent 100%),
-    radial-gradient(1.7px 1.7px at 287px 275px, rgba(255,255,255,0.78), transparent 100%);
-  background-size:340px 340px;
-  opacity:0.85;
-  animation: twinkle 5s ease-in-out infinite reverse;
-}
-@keyframes nebula-drift{
-  0%{ transform:translate3d(0,0,0) scale(1); }
-  100%{ transform:translate3d(-2.5%,3%,0) scale(1.06); }
-}
-@keyframes twinkle{
-  0%,100%{ opacity:0.4; }
-  50%{ opacity:0.9; }
-}
-@media (prefers-reduced-motion: reduce){
-  .galaxy-bg .nebula, .galaxy-bg .stars-far, .galaxy-bg .stars-near{ animation:none; }
-}
-
 img{max-width:100%; display:block;}
 
 .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
