@@ -173,10 +173,10 @@ document.querySelectorAll('.filter-btn').forEach(function(btn){
   }, { passive: true });
 })();
 
-/* ---------- DIVISOR: LA LINEA VIBRA COMO UNA CUERDA AL RASPARLA ---------- */
-(function(){
-  var svg = document.querySelector('.string-divider');
-  var line = document.getElementById('stringLine');
+/* ---------- DIVISORES: LAS LINEAS VIBRAN COMO UNA CUERDA AL RASPARLAS ---------- */
+function initStringDivider(svgSelector, pathId){
+  var svg = document.querySelector(svgSelector);
+  var line = document.getElementById(pathId);
   if(!svg || !line) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -228,4 +228,9 @@ document.querySelectorAll('.filter-btn').forEach(function(btn){
       }
     }
   }, { passive: true });
-})();
+}
+
+initStringDivider('#stringDivider1', 'stringLine1');
+initStringDivider('#stringDivider2', 'stringLine2');
+initStringDivider('#stringDivider3', 'stringLine3');
+initStringDivider('#stringDivider4', 'stringLine4');
