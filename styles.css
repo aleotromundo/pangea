@@ -18,10 +18,7 @@
 html{scroll-behavior:smooth;}
 
 body{
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,162,39,0.10), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(79,199,168,0.08), transparent),
-    var(--bg);
+  background: var(--bg);
   color:var(--text);
   font-family:'Inter', sans-serif;
   line-height:1.5;
@@ -30,6 +27,86 @@ body{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
+
+/* ---------- FONDO: VIA LACTEA / AURORA ---------- */
+.galaxy-bg{
+  position:fixed; inset:0; z-index:-1;
+  overflow:hidden; pointer-events:none;
+}
+.galaxy-bg .nebula{
+  position:absolute; inset:-12%;
+  background:
+    radial-gradient(ellipse 60% 40% at 12% 18%, rgba(79,199,168,0.26), transparent 60%),
+    radial-gradient(ellipse 55% 38% at 88% 12%, rgba(144,146,224,0.24), transparent 60%),
+    radial-gradient(ellipse 50% 42% at 78% 76%, rgba(123,211,154,0.20), transparent 60%),
+    radial-gradient(ellipse 45% 32% at 18% 84%, rgba(201,162,39,0.16), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 45%, rgba(79,199,168,0.06), transparent 70%),
+    linear-gradient(200deg, #070818 0%, #11142A 40%, #171b3d 75%, #0d0f22 100%);
+  filter: blur(42px) saturate(1.15);
+  animation: nebula-drift 70s ease-in-out infinite alternate;
+}
+.galaxy-bg .stars-far,
+.galaxy-bg .stars-near{
+  position:absolute; inset:0;
+  background-repeat:repeat;
+}
+.galaxy-bg .stars-far{
+  background-image:
+    radial-gradient(0.6px 0.6px at 163px 28px, rgba(255,255,255,0.42), transparent 100%),
+    radial-gradient(1.1px 1.1px at 57px 35px, rgba(255,255,255,0.6), transparent 100%),
+    radial-gradient(1.0px 1.0px at 139px 22px, rgba(255,255,255,0.31), transparent 100%),
+    radial-gradient(0.8px 0.8px at 23px 55px, rgba(255,255,255,0.57), transparent 100%),
+    radial-gradient(1.1px 1.1px at 143px 50px, rgba(255,255,255,0.62), transparent 100%),
+    radial-gradient(0.9px 0.9px at 107px 56px, rgba(255,255,255,0.43), transparent 100%),
+    radial-gradient(1.2px 1.2px at 1px 194px, rgba(255,255,255,0.61), transparent 100%),
+    radial-gradient(0.7px 0.7px at 87px 71px, rgba(255,255,255,0.73), transparent 100%),
+    radial-gradient(0.7px 0.7px at 86px 26px, rgba(255,255,255,0.34), transparent 100%),
+    radial-gradient(1.0px 1.0px at 216px 88px, rgba(255,255,255,0.66), transparent 100%),
+    radial-gradient(1.0px 1.0px at 186px 117px, rgba(255,255,255,0.74), transparent 100%),
+    radial-gradient(1.0px 1.0px at 96px 20px, rgba(255,255,255,0.67), transparent 100%),
+    radial-gradient(0.9px 0.9px at 158px 220px, rgba(255,255,255,0.39), transparent 100%),
+    radial-gradient(1.1px 1.1px at 17px 11px, rgba(255,255,255,0.65), transparent 100%),
+    radial-gradient(0.8px 0.8px at 20px 218px, rgba(255,255,255,0.35), transparent 100%),
+    radial-gradient(1.0px 1.0px at 71px 116px, rgba(255,255,255,0.46), transparent 100%);
+  background-size:220px 220px;
+  opacity:0.55;
+  animation: twinkle 7s ease-in-out infinite, drift-far 260s linear infinite;
+}
+.galaxy-bg .stars-near{
+  background-image:
+    radial-gradient(1.7px 1.7px at 189px 181px, rgba(255,255,255,0.66), transparent 100%),
+    radial-gradient(2.1px 2.1px at 331px 36px, rgba(255,255,255,0.62), transparent 100%),
+    radial-gradient(2.0px 2.0px at 125px 83px, rgba(255,255,255,0.66), transparent 100%),
+    radial-gradient(1.7px 1.7px at 327px 285px, rgba(201,162,39,0.68), transparent 100%),
+    radial-gradient(2.4px 2.4px at 28px 117px, rgba(79,199,168,0.87), transparent 100%),
+    radial-gradient(1.5px 1.5px at 205px 137px, rgba(144,146,224,0.92), transparent 100%),
+    radial-gradient(1.7px 1.7px at 290px 161px, rgba(123,211,154,0.75), transparent 100%),
+    radial-gradient(1.6px 1.6px at 329px 234px, rgba(255,255,255,0.61), transparent 100%),
+    radial-gradient(1.7px 1.7px at 287px 275px, rgba(255,255,255,0.78), transparent 100%);
+  background-size:340px 340px;
+  opacity:0.85;
+  animation: twinkle 5s ease-in-out infinite reverse, drift-near 190s linear infinite reverse;
+}
+@keyframes nebula-drift{
+  0%{ transform:translate3d(0,0,0) scale(1); }
+  100%{ transform:translate3d(-2.5%,3%,0) scale(1.06); }
+}
+@keyframes drift-far{
+  from{ background-position: 0 0; }
+  to{ background-position: 220px 110px; }
+}
+@keyframes drift-near{
+  from{ background-position: 0 0; }
+  to{ background-position: -340px 170px; }
+}
+@keyframes twinkle{
+  0%,100%{ opacity:0.4; }
+  50%{ opacity:0.9; }
+}
+@media (prefers-reduced-motion: reduce){
+  .galaxy-bg .nebula, .galaxy-bg .stars-far, .galaxy-bg .stars-near{ animation:none; }
+}
+
 img{max-width:100%; display:block;}
 
 .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
@@ -61,6 +138,47 @@ nav a:hover{color:var(--text);}
 .mobile-panel.active{display:flex; opacity:1; transform:translateY(0); pointer-events:auto;}
 .mobile-panel a{font-family:'Fraunces', serif; font-size:1.4rem; color:var(--text);}
 .mobile-panel .nav-cta{align-self:flex-start; margin-top:10px;}
+
+/* ---------- CURSOR: DUO QUE SIGUE AL PUNTERO ---------- */
+.cursor-follow{
+  position:fixed; inset:0; z-index:70;
+  pointer-events:none; opacity:0;
+  transition:opacity .5s ease;
+}
+.cursor-follow.active{opacity:1;}
+.cursor-dot{
+  position:absolute; top:0; left:0;
+  border-radius:50%;
+  will-change:transform;
+}
+.dot-lead{
+  width:7px; height:7px;
+  background:var(--gold);
+  box-shadow:0 0 10px rgba(201,162,39,0.65);
+}
+.dot-trail{
+  width:24px; height:24px;
+  border:1px solid rgba(79,199,168,0.5);
+  background:rgba(79,199,168,0.04);
+}
+@media (pointer: coarse){ .cursor-follow{display:none;} }
+@media (prefers-reduced-motion: reduce){ .cursor-follow{display:none;} }
+
+/* ---------- SCROLL REVEAL: TEXTOS E IMAGENES DESDE LA IZQUIERDA ---------- */
+@keyframes reveal-in{
+  from{ opacity:0; transform:translateX(-34px); }
+  to{ opacity:1; transform:translateX(0); }
+}
+.reveal{
+  opacity:0;
+  transform:translateX(-34px);
+}
+.reveal.is-visible{
+  animation: reveal-in .5s cubic-bezier(0.22, 1.4, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1; transform:none; animation:none; }
+}
 
 /* ---------- WHATSAPP FLOTANTE ---------- */
 .wa-float{
@@ -95,7 +213,7 @@ nav a:hover{color:var(--text);}
 /* ---------- HERO ---------- */
 .hero{position:relative; padding:120px 0 100px; text-align:center; overflow:hidden;}
 .orbits{position:absolute; top:50%; left:50%; width:900px; height:900px; transform:translate(-50%,-56%); z-index:0; opacity:0.55; animation:spin 140s linear infinite;}
-.orbits circle{fill:none; stroke:var(--line); stroke-width:1;}
+.orbits circle, .orbits path{fill:none; stroke:var(--line); stroke-width:1; stroke-linejoin:round;}
 .orbits .ring2{stroke:rgba(201,162,39,0.25); stroke-dasharray:2 10;}
 .orbits .ring3{stroke:rgba(79,199,168,0.2); stroke-dasharray:1 6;}
 @keyframes spin{ to{ transform:translate(-50%,-56%) rotate(360deg);} }
@@ -139,17 +257,34 @@ h1 em{font-style:italic; font-weight:400; color:var(--gold);}
 .filter-btn.active[data-filter]{color:var(--bg);}
 
 /* ---------- WORLDS / PROJECTS ---------- */
-.worlds{padding:120px 0 100px; border-top:1px solid var(--line);}
+.worlds{padding:120px 0 100px;}
+.string-divider{display:block; width:100%; height:30px; margin:-15px 0; overflow:visible; position:relative; z-index:2;}
+.string-divider path{fill:none; stroke:var(--line); stroke-width:1;}
 .world-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:52px 32px;}
 .world-card{text-align:center; cursor:pointer; position:relative;}
+
+.world-card::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; width:100%; aspect-ratio:1/1;
+  border-radius:50%;
+  border:1.5px solid rgba(241,238,228,0.55);
+  box-shadow:0 0 26px rgba(241,238,228,0.22), inset 0 0 26px rgba(241,238,228,0.08);
+  opacity:0;
+  transform:scale(0.88);
+  transition:transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s ease;
+  pointer-events:none;
+  z-index:0;
+}
+.world-card:hover::before{opacity:1; transform:scale(1.16);}
 
 .portal{
   width:100%; aspect-ratio:1/1; border-radius:50%; position:relative;
   margin-bottom:20px; border:1px solid var(--line); overflow:hidden;
-  transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s ease;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s ease;
   box-shadow: inset 0 0 34px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.08);
 }
-.world-card:hover .portal{transform:scale(1.045); border-color:rgba(241,238,228,0.35);}
+.world-card:hover .portal{transform:scale(1.015); border-color:rgba(241,238,228,0.28);}
 
 .portal .mock{position:absolute; inset:12%; width:76%; height:76%; opacity:0.92;}
 .portal .mock-photo{
@@ -165,7 +300,7 @@ h1 em{font-style:italic; font-weight:400; color:var(--gold);}
 .portal-label{
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.08em;
-  background:rgba(10,12,26,0.45); opacity:0; transition:opacity .3s ease; z-index:3;
+  background:rgba(10,12,26,0.32); opacity:0; transition:opacity .4s ease; z-index:3;
 }
 .world-card:hover .portal-label{opacity:1;}
 
